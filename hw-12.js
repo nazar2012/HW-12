@@ -3,13 +3,14 @@ const user = {
     age: "12",
     hobby: "football",
     premium: true,
-}
+};
 user.mood = "happy";
-user.hobby = "skydiving"
+user.hobby = "skydiving";
 user.premium = false;
 const userKeys = Object.keys(user);
-for (const object of userKeys) {
-    console.log(`${object}: ${user[object]}`);
+for (const key of userKeys) {
+    const { [key]: value } = user;
+    console.log(`${key}: ${value}`);
 }
 
 function countProps(obj) {
@@ -29,16 +30,15 @@ const team = {
     Oleg: 35,
 };
 function findBestEmployee(employees) {
-    const values = Object.keys(employees);
-    let findName = "";
+    let bestName = "";
     let maxTasks = 0;
-    for (const key of values) {
-        if (employees[key] > maxTasks) {
-            maxTasks = employees[key];
-            findName = key;
+    for (const [name, tasks] of Object.entries(employees)) {
+        if (tasks > maxTasks) {
+            maxTasks = tasks;
+            bestName = name;
         }
     }
-    return `${findName}: ${maxTasks}`
+    return `${bestName}: ${maxTasks}`;
 }
 console.log(findBestEmployee(team));
 
