@@ -14,7 +14,8 @@ for (const key of userKeys) {
 }
 
 function countProps(obj) {
-    return Object.keys(obj).length;
+    const keys = Object.keys(obj);
+    return keys.length;
 }
 const userLen = {
     name: "Nazar",
@@ -81,8 +82,9 @@ console.log(getAllPropValues(products, "category"));
 function calculateTotalPrice(allProducts, productName) {
     let totalPrice = 0;
     for (const product of allProducts) {
-        if (product.name === productName) {
-            totalPrice += product.price * product.quantity;
+        const { name, price, quantity } = product;
+        if (name === productName) {
+            totalPrice += price * quantity;
         }
     }
     return totalPrice;
