@@ -61,10 +61,11 @@ function countTotalSalary(employees) {
 console.log(countTotalSalary(sallerry));
 
 function getAllPropValues(arr, prop) {
-    let newArr = [];
+    const newArr = [];
     for (const item of arr) {
-        if (prop in item) {
-            newArr.push(item[prop])
+        const { [prop]: value } = item;
+        if (value !== undefined) {
+            newArr.push(value);
         }
     }
     return newArr;
@@ -81,8 +82,7 @@ console.log(getAllPropValues(products, "category"));
 
 function calculateTotalPrice(allProducts, productName) {
     let totalPrice = 0;
-    for (const product of allProducts) {
-        const { name, price, quantity } = product;
+    for (const { name, price, quantity } of allProducts) {
         if (name === productName) {
             totalPrice += price * quantity;
         }
